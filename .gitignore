@@ -5,3 +5,6 @@
 /.vs/nursinghome/FileContentIndex
 /.vs/nursinghome/v17
 /.vs
+/apis/nursinghomeapi/.vs/nursinghomeapi
+/apis/nursinghomeapi/bin/Debug/net7.0
+/apis/nursinghomeapi/obj
