@@ -3,6 +3,7 @@ using common.apiresponse;
 using common.database;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using nursinghomeapi.Common;
 using System.Data.SqlClient;
 
 namespace nursinghomeapi.Controllers
@@ -35,7 +36,7 @@ namespace nursinghomeapi.Controllers
 			}
 			catch (Exception ex)
 			{
-				// TODO
+				LogErrorHandler.LogException(ex, typeof(AppoitnmentSessionCreationController).Name);
 			}
 			return response;
 		}
