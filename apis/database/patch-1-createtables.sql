@@ -157,11 +157,12 @@ create table dbo.AppointmentSession (
 	NursingHomeId int not null,
 
 	CarerId int null,
-	Status smallint not null default(0), 
+	Name varchar(100) not null,
+	Status smallint not null default(0),  
 	StartDateTime datetime not null,
 	EndDateTime datetime not null,
 
-	Rate varchar(max) not null,
+	Rate decimal not null,
 
 	Notes varchar(max) null,
 	
@@ -170,6 +171,14 @@ create table dbo.AppointmentSession (
 		AppointmentSessionId ASC
 	)
 );
+
+/*
+	Status on AppointmentSession
+	0: Available,
+	1: ProvisionallyBooked
+	2: AwaitingApproval ?
+	3: Booked
+*/
 
 alter table dbo.AppointmentSession
 	add constraint FK_AppointmentSession_NursingHomeId_NursingHome_NursingHomeId
