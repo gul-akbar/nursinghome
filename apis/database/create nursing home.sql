@@ -1,31 +1,13 @@
 USE [gwdb]
 GO
 
-insert into [dbo].[Contact]
-           (
-		   [Guid]
-           ,[LastUpdateDateTime]
-           ,[CreatedDateTime]
-           ,[Name]
-           ,[Notes])
-     values
-           (
-		   newid(),
-		   getdate(), 
-		   getdate(), 
-		   'Gul Akbar Owner',
-		   'none'
-		   );
-
-declare @contactId int = Scope_Identity()
-
 insert into [dbo].[NursingHome]
     ([Guid]
     ,[LastUpdateDateTime]
     ,[CreatedDateTime]
-    ,[ContactId]
+    ,[ContactName]
     ,[HouseNumber]
-    ,[AddressLine]
+    ,[AddressLine1]
     ,[AddressLine2]
     ,[Postcode]
     ,[City]
@@ -43,7 +25,7 @@ values
 	newid(),
 	getdate(),
 	getdate(),
-	@contactId,
+	'Gul Akbar',
 	'12',
 	'Park Road',
 	'',
