@@ -1,4 +1,7 @@
-﻿namespace NursingManagementSystem.Panels
+﻿using common.apirequests.nursinghome;
+using common.databaseentities;
+
+namespace NursingManagementSystem.Panels
 {
 	public partial class AddEditNursingHomeForm : Form
 	{
@@ -6,7 +9,6 @@
 		{
 			InitializeComponent();
 		}
-
 
 
 		private void button2_Click(object sender, EventArgs e)
@@ -61,8 +63,26 @@
 				return;
 			}
 
+			NursingHomeEntity entity = new NursingHomeEntity();
+			entity.AddressLine1 = textBoxAddressLine1.Text.Trim();
+			entity.AddressLine2 = textBoxAddressLine2.Text.Trim();
+			entity.Mobile = textBoxMobile.Text.Trim();
+			entity.City = textBoxCity.Text.Trim();
+			entity.Postcode = textBoxPostcode.Text.Trim();
+			entity.EmailAddress = textBoxEmail.Text.Trim();
+			entity.Approved = checkBoxApproved.Checked;
+			entity.ContactName = textBoxName.Text.Trim();
+			entity.HomePhone = textBoxHome.Text.Trim();
+			entity.Mobile = textBoxMobile.Text.Trim();
 
+			//entity.Notes
+			
+			ApiCalls.RegisterNursingHome(new RegisterNursingHomeRequest()
+			{
+				NursingHome = entity
+			});
+
+			DialogResult = DialogResult.OK;
 		}
-
 	}
 }

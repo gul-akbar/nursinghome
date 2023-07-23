@@ -41,5 +41,10 @@ namespace NursingManagementSystem
 		{
 
 		}
+
+		private void linkLabelUseLocalAPI_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Constants.Instance.UseLocal();
+		}
 	}
 }

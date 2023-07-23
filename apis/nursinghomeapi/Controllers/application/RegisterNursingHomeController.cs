@@ -13,9 +13,9 @@ namespace nursinghomeapi.Controllers
 	{
 
 		[HttpPost(Name = "RegisterNursingHome")]
-		public Response Post(RegisterNursingHomeRequest request)
+		public ApplicationResponse Post(RegisterNursingHomeRequest request)
 		{
-			Response response = new Response();
+			ApplicationResponse response = new ApplicationResponse();
 
 			// do some authentication checks
 
@@ -24,6 +24,9 @@ namespace nursinghomeapi.Controllers
 				request.NursingHome.DateJoined = DateTime.Now;
 				request.NursingHome.Guid = Guid.NewGuid();
 				request.NursingHome.LastUpdateDateTime = DateTime.Now;
+				request.NursingHome.CreatedDateTime = DateTime.Now;
+
+				request.NursingHome.Password = "test";
 
 				using (SqlConnection connection = new SqlConnection(Constants.DatabaseConnectionString))
 				{

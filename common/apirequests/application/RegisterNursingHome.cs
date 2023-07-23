@@ -2,7 +2,7 @@
 
 namespace common.apirequests.nursinghome
 {
-	public class RegisterNursingHomeRequest : Request
+	public class RegisterNursingHomeRequest : ApplicationRequest
 	{
 		public NursingHomeEntity NursingHome { get; set; }
 	}

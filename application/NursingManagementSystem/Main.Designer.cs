@@ -31,17 +31,18 @@
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.mainPanel = new System.Windows.Forms.Panel();
 			this.nursingHomesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.viewNursingHomesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.registerNewNursingHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.carersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.vIewCarersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.approveCarerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.viewNursingHomesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.registerNewNursingHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addCarerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.topPanel = new System.Windows.Forms.Panel();
+			this.mainPanel = new System.Windows.Forms.Panel();
 			this.containingPanel = new System.Windows.Forms.Panel();
+			this.topPanel = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
+			this.linkLabelUseLocalAPI = new System.Windows.Forms.LinkLabel();
 			this.menuStrip.SuspendLayout();
 			this.mainPanel.SuspendLayout();
 			this.topPanel.SuspendLayout();
@@ -70,19 +71,9 @@
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-			// 
-			// mainPanel
-			// 
-			this.mainPanel.Controls.Add(this.containingPanel);
-			this.mainPanel.Controls.Add(this.topPanel);
-			this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.mainPanel.Location = new System.Drawing.Point(0, 24);
-			this.mainPanel.Name = "mainPanel";
-			this.mainPanel.Size = new System.Drawing.Size(1358, 798);
-			this.mainPanel.TabIndex = 1;
 			// 
 			// nursingHomesToolStripMenuItem
 			// 
@@ -92,30 +83,6 @@
 			this.nursingHomesToolStripMenuItem.Name = "nursingHomesToolStripMenuItem";
 			this.nursingHomesToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
 			this.nursingHomesToolStripMenuItem.Text = "Nursing Homes";
-			// 
-			// carersToolStripMenuItem
-			// 
-			this.carersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.vIewCarersToolStripMenuItem,
-            this.approveCarerToolStripMenuItem,
-            this.addCarerToolStripMenuItem});
-			this.carersToolStripMenuItem.Name = "carersToolStripMenuItem";
-			this.carersToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-			this.carersToolStripMenuItem.Text = "Carers";
-			// 
-			// vIewCarersToolStripMenuItem
-			// 
-			this.vIewCarersToolStripMenuItem.Name = "vIewCarersToolStripMenuItem";
-			this.vIewCarersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.vIewCarersToolStripMenuItem.Text = "VIew Carers";
-			this.vIewCarersToolStripMenuItem.Click += new System.EventHandler(this.vIewCarersToolStripMenuItem_Click);
-			// 
-			// approveCarerToolStripMenuItem
-			// 
-			this.approveCarerToolStripMenuItem.Name = "approveCarerToolStripMenuItem";
-			this.approveCarerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.approveCarerToolStripMenuItem.Text = "Approve Carer";
-			this.approveCarerToolStripMenuItem.Click += new System.EventHandler(this.approveCarerToolStripMenuItem_Click);
 			// 
 			// viewNursingHomesToolStripMenuItem
 			// 
@@ -131,21 +98,46 @@
 			this.registerNewNursingHomeToolStripMenuItem.Text = "Register new Nursing Home";
 			this.registerNewNursingHomeToolStripMenuItem.Click += new System.EventHandler(this.registerNewNursingHomeToolStripMenuItem_Click);
 			// 
+			// carersToolStripMenuItem
+			// 
+			this.carersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vIewCarersToolStripMenuItem,
+            this.approveCarerToolStripMenuItem,
+            this.addCarerToolStripMenuItem});
+			this.carersToolStripMenuItem.Name = "carersToolStripMenuItem";
+			this.carersToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+			this.carersToolStripMenuItem.Text = "Carers";
+			// 
+			// vIewCarersToolStripMenuItem
+			// 
+			this.vIewCarersToolStripMenuItem.Name = "vIewCarersToolStripMenuItem";
+			this.vIewCarersToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+			this.vIewCarersToolStripMenuItem.Text = "VIew Carers";
+			this.vIewCarersToolStripMenuItem.Click += new System.EventHandler(this.vIewCarersToolStripMenuItem_Click);
+			// 
+			// approveCarerToolStripMenuItem
+			// 
+			this.approveCarerToolStripMenuItem.Name = "approveCarerToolStripMenuItem";
+			this.approveCarerToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+			this.approveCarerToolStripMenuItem.Text = "Approve Carer";
+			this.approveCarerToolStripMenuItem.Click += new System.EventHandler(this.approveCarerToolStripMenuItem_Click);
+			// 
 			// addCarerToolStripMenuItem
 			// 
 			this.addCarerToolStripMenuItem.Name = "addCarerToolStripMenuItem";
-			this.addCarerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.addCarerToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
 			this.addCarerToolStripMenuItem.Text = "Add Carer";
 			this.addCarerToolStripMenuItem.Click += new System.EventHandler(this.addCarerToolStripMenuItem_Click);
 			// 
-			// topPanel
+			// mainPanel
 			// 
-			this.topPanel.Controls.Add(this.label1);
-			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.topPanel.Location = new System.Drawing.Point(0, 0);
-			this.topPanel.Name = "topPanel";
-			this.topPanel.Size = new System.Drawing.Size(1358, 60);
-			this.topPanel.TabIndex = 0;
+			this.mainPanel.Controls.Add(this.containingPanel);
+			this.mainPanel.Controls.Add(this.topPanel);
+			this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.mainPanel.Location = new System.Drawing.Point(0, 24);
+			this.mainPanel.Name = "mainPanel";
+			this.mainPanel.Size = new System.Drawing.Size(1358, 798);
+			this.mainPanel.TabIndex = 1;
 			// 
 			// containingPanel
 			// 
@@ -154,6 +146,16 @@
 			this.containingPanel.Name = "containingPanel";
 			this.containingPanel.Size = new System.Drawing.Size(1358, 738);
 			this.containingPanel.TabIndex = 1;
+			// 
+			// topPanel
+			// 
+			this.topPanel.Controls.Add(this.linkLabelUseLocalAPI);
+			this.topPanel.Controls.Add(this.label1);
+			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.topPanel.Location = new System.Drawing.Point(0, 0);
+			this.topPanel.Name = "topPanel";
+			this.topPanel.Size = new System.Drawing.Size(1358, 60);
+			this.topPanel.TabIndex = 0;
 			// 
 			// label1
 			// 
@@ -164,6 +166,17 @@
 			this.label1.Size = new System.Drawing.Size(309, 21);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Nursing Home Management System";
+			// 
+			// linkLabelUseLocalAPI
+			// 
+			this.linkLabelUseLocalAPI.AutoSize = true;
+			this.linkLabelUseLocalAPI.Location = new System.Drawing.Point(1286, 39);
+			this.linkLabelUseLocalAPI.Name = "linkLabelUseLocalAPI";
+			this.linkLabelUseLocalAPI.Size = new System.Drawing.Size(57, 15);
+			this.linkLabelUseLocalAPI.TabIndex = 1;
+			this.linkLabelUseLocalAPI.TabStop = true;
+			this.linkLabelUseLocalAPI.Text = "Use Local";
+			this.linkLabelUseLocalAPI.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUseLocalAPI_LinkClicked);
 			// 
 			// Main
 			// 
@@ -203,5 +216,6 @@
 		private Panel containingPanel;
 		private Panel topPanel;
 		private Label label1;
+		private LinkLabel linkLabelUseLocalAPI;
 	}
 }

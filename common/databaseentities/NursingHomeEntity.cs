@@ -3,7 +3,7 @@
 namespace common.databaseentities
 {
 
-	[Table("AppointmentSession")]
+	[Table("NursingHome")]
 	public class NursingHomeEntity : BaseEntity
 	{
 		[Key]
@@ -23,7 +23,7 @@ namespace common.databaseentities
 		public string Notes { get; set; } = string.Empty;
 
 		public string UserName { get; set; } = string.Empty;
-		//public string Password { get; set; } = string.Empty;
+		public string Password { get; set; } = string.Empty;
 
 		public bool Approved { get; set; }
 		public bool Ignore { get; set; }
