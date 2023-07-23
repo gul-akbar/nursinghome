@@ -47,6 +47,8 @@ export const Sessions: React.FC = (): JSX.Element => {
   const [recurrenceRuleWeek, setRecurrenceRuleWeek] = React.useState(1);
   const [recurrenceRuleDays, setRecurrenceRuleDays] = React.useState([1]);
   const [recurrenceInclude, setRecurrenceInclude] = React.useState(false);
+  const [showSessionNotification, setShowSessionNotification] =
+    React.useState(false);
 
   const user = context.AuthenticatedUser.getUser();
 
@@ -113,10 +115,18 @@ export const Sessions: React.FC = (): JSX.Element => {
       notes: sessionNotes,
       includeRecurrence: recurrenceInclude,
       recurrence: recurrence,
+      status: 0,
     };
 
     const created = newSession(sessionToCreate);
-    console.log(created);
+
+    if (!created) {
+      setError(true);
+      return;
+    }
+
+    setShowModalNewSession(false);
+    setShowSessionNotification(true);
   }
 
   function handleIncludeReoccurrence() {
@@ -134,7 +144,31 @@ export const Sessions: React.FC = (): JSX.Element => {
     setRecurrenceRuleDays(days);
   }
 
-  function handleIncludeReoccurance() {}
+  function hideSessionNotification() {
+    setShowSessionNotification(false);
+  }
+  const modalSessionNotification = (): JSX.Element => {
+    return (
+      <Modal show={showSessionNotification} onHide={hideSessionNotification}>
+        <Modal.Header closeButton>
+          <Modal.Title>Session</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Session has been created!</Modal.Body>
+        <Modal.Footer className="modal-footer">
+          <div>
+            <> </>
+            <Button
+              variant="success"
+              className="modal-padding"
+              onClick={hideSessionNotification}
+            >
+              Ok
+            </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
 
   const modalNewSession = (): JSX.Element => {
     return (
@@ -458,6 +492,7 @@ export const Sessions: React.FC = (): JSX.Element => {
       <div>{loading ? loadingData() : <></>}</div>
       <div>{error ? errorView() : <></>}</div>
       <div>{showModalNewSession ? modalNewSession() : <></>}</div>
+      <div>{showSessionNotification ? modalSessionNotification() : <></>}</div>
     </div>
   );
 };

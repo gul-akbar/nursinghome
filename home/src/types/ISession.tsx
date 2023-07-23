@@ -8,6 +8,7 @@ export interface ISession {
   rate: number;
   notes: string;
   includeRecurrence: boolean;
+  status: number;
 
   recurrence: IRecurrence;
 }
