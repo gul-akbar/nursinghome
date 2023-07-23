@@ -44,7 +44,7 @@ namespace nursinghomeapi.Controllers
 			}
 			catch (Exception ex)
 			{
-				LogErrorHandler.LogException(ex, typeof(AppoitnmentSessionCreationController).Name);
+				LogErrorHandler.LogException(ex);
 			}
 			return response;
 		}

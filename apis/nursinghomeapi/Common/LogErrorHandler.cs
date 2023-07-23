@@ -6,19 +6,19 @@ namespace nursinghomeapi.Common
 {
     public class LogErrorHandler
 	{
-		public static void LogException(Exception ex, string source)
+		public static void LogException(Exception ex)
 		{
-			LogException(ex, source, ex.Message);
+			LogException(ex, ex.Message);
 		}
 
-		public static void LogException(Exception ex, string source, string message)
+		public static void LogException(Exception ex, string message)
 		{
 			ErrorLog errorLog = new ErrorLog();
 			errorLog.DateTime = DateTime.Now;
 			errorLog.Guid = Guid.NewGuid();
 			errorLog.Message = message;
 			errorLog.StackTrace = ex.StackTrace;
-			errorLog.Source = source;
+			errorLog.Area = 0;
 
 			using (SqlConnection connection = new SqlConnection(Constants.DatabaseConnectionString))
 			{

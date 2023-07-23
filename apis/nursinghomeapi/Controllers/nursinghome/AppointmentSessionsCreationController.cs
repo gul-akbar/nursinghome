@@ -11,7 +11,7 @@ namespace nursinghomeapi.Controllers
 {
     [ApiController]
 	[Route("[controller]")]
-	public class AppoitnmentSessionCreationController : BaseController
+	public class AppointmentSessionCreationController : BaseController
 	{
 	
 		[HttpPost(Name = "AppointmentSessionCreation")]
@@ -40,7 +40,7 @@ namespace nursinghomeapi.Controllers
 			}
 			catch (Exception ex)
 			{
-				LogErrorHandler.LogException(ex, typeof(AppoitnmentSessionCreationController).Name);
+				LogErrorHandler.LogException(ex);
 			}
 			return response;
 		}

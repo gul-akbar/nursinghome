@@ -12,7 +12,6 @@ namespace common.databaseentities.common
 
         public string Message { get; set; } = string.Empty;
         public string StackTrace { get; set; } = string.Empty;
-        public string Source { get; set; } = string.Empty;
-        public string InnerException { get; set; } = string.Empty;
+        public Int16 Area { get; set; }
     }
 }
