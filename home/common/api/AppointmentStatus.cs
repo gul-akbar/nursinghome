@@ -1,6 +1,6 @@
 ﻿namespace common.api
 {
-	public enum AppointmentStatus : int
+	public enum AppointmentStatus : short
 	{
 		Available = 0,
 		ProvisionallyBooked,

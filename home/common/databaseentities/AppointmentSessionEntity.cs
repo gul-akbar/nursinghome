@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using common.api;
+using Dapper.Contrib.Extensions;
 
 namespace common.database
 {
@@ -6,7 +7,7 @@ namespace common.database
     public class AppointmentSessionEntity
     {
         [Key]
-        public int ApointmentSessionId { get; set; }
+        public int AppointmentSessionId { get; set; }
         public Guid Guid { get; set; }
         public DateTime LastUpdateDateTime { get; set; }
         public DateTime CreatedDateTime { get; set; }
@@ -20,5 +21,7 @@ namespace common.database
         public DateTime EndDateTime { get; set; }
         public decimal Rate { get; set; }
         public string Notes { get; set; } = string.Empty;
-    }
+
+        public AppointmentStatus Status { get; set; }
+	}
 }

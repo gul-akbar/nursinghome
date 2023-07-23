@@ -6,7 +6,6 @@ using Dapper.Contrib.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using nursinghomeapi.Common;
 using System.Data.SqlClient;
-using System.Security.Cryptography.Xml;
 
 namespace nursinghomeapi.Controllers
 {
@@ -15,7 +14,7 @@ namespace nursinghomeapi.Controllers
 	public class AppoitnmentSessionCreationController : BaseController
 	{
 	
-		[HttpPost(Name = "AppoitnmentSessionCreation")]
+		[HttpPost(Name = "AppointmentSessionCreation")]
 		public Response Create(CreateSessionRequest request)
 		{
 			Response response= new Response();

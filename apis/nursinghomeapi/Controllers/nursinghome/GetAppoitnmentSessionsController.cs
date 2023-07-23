@@ -11,10 +11,10 @@ namespace nursinghomeapi.Controllers
 {
     [ApiController]
 	[Route("[controller]")]
-	public class GetAppoitnmentSessionsController : BaseController
+	public class GetAppointmentSessionsController : BaseController
 	{
 	
-		[HttpPost(Name = "GetAppoitnmentSessions")]
+		[HttpPost(Name = "GetAppointmentSessions")]
 		public Response Create(GetAppointmentsForDate request)
 		{
 			GetAppointmentSessionResponse response = new GetAppointmentSessionResponse();
