@@ -39,3 +39,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/application/NursingManagementSystem/obj
+/application/NursingManagementSystem/bin/Debug/net7.0-windows
+/common/bin/Debug/net7.0
+/common/bin/Release/net7.0
+/common/obj
