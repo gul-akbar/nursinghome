@@ -1,6 +1,6 @@
 ﻿using common;
 using common.api;
-using common.apirequests;
+using common.apirequests.nursinghome;
 using common.database;
 using Dapper.Contrib.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using System.Security.Cryptography.Xml;
 
 namespace nursinghomeapi.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("[controller]")]
 	public class AppoitnmentSessionCreationController : BaseController
 	{
@@ -22,6 +22,8 @@ namespace nursinghomeapi.Controllers
 
 			try
 			{
+				LogRequestInformation(request);
+
 				List<AppointmentSessionEntity> sesionsToCreate = GetSessionsToCreate(request);
 
 				using (SqlConnection connection = new SqlConnection(Constants.DatabaseConnectionString))

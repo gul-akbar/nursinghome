@@ -1,6 +1,6 @@
 ﻿using common.database;
 
-namespace common.apiresponse
+namespace common.apiresponse.nursinghome
 {
     public class GetAppointmentSessionResponse : Response
     {

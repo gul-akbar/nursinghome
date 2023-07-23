@@ -1,5 +1,6 @@
 ﻿using common;
-using common.apiresponse;
+using common.apirequests.nursinghome;
+using common.apiresponse.nursinghome;
 using common.database;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
@@ -8,18 +9,20 @@ using System.Data.SqlClient;
 
 namespace nursinghomeapi.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("[controller]")]
 	public class GetAppoitnmentSessionsController : BaseController
 	{
 	
 		[HttpPost(Name = "GetAppoitnmentSessions")]
-		public Response Create(Request request)
+		public Response Create(GetAppointmentsForDate request)
 		{
 			GetAppointmentSessionResponse response = new GetAppointmentSessionResponse();
 
 			try
 			{
+				LogRequestInformation(request);
+
 				using (SqlConnection connection = new SqlConnection(Constants.DatabaseConnectionString))
 				{
 					connection.Open();
@@ -28,7 +31,12 @@ namespace nursinghomeapi.Controllers
 
 					response.Sessions =
 						connection
-						.Query<AppointmentSessionEntity>("select * from AppointmentSession")
+						.Query<AppointmentSessionEntity>("select * from AppointmentSession where StartDateTime >= @StartSearchDateTime and StartDateTime <= @EndSearchDateTime",
+							new
+							{
+								StartSearchDateTime = request.Date.Date,
+								EndSearchDateTime = request.Date.Date.AddDays(1)
+							})
 						.OrderBy(a => a.StartDateTime)
 						.ToList();
 				}

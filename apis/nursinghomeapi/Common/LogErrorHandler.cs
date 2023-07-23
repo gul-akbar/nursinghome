@@ -1,10 +1,10 @@
-﻿using common.common;
+﻿using common.databaseentities.common;
 using Dapper.Contrib.Extensions;
 using System.Data.SqlClient;
 
 namespace nursinghomeapi.Common
 {
-	public class LogErrorHandler
+    public class LogErrorHandler
 	{
 		public static void LogException(Exception ex, string source)
 		{
