@@ -41,21 +41,6 @@ GO
 --			Domain specific
 ------------------------------------------------------------------------------------------
 
-create table dbo.Contact (
-
-	ContactId int identity (1,1) not null,
-	Guid uniqueidentifier not null,
-	LastUpdateDateTime datetime not null,
-	CreatedDateTime datetime not null default (getdate()),
-
-	Name varchar(100) not null,
-	Notes varchar(max) null,
-
-	primary key clustered 
-	(
-		ContactId ASC
-	)
-)
 
 create table dbo.Carer (
 
@@ -88,10 +73,9 @@ create table dbo.NursingHome (
 	LastUpdateDateTime datetime not null,
 	CreatedDateTime datetime not null default (getdate()),
 
-	ContactId int not null,
-
+	ContactName varchar(100) not null,
 	HouseNumber varchar(10) not null,
-	AddressLine varchar(100) not null,
+	AddressLine1 varchar(100) not null,
 	AddressLine2 varchar(100) null,
 	Postcode varchar(20) not null,
 	City varchar(50) not null,
@@ -113,14 +97,6 @@ create table dbo.NursingHome (
 	)
 )
 Go
-
-alter table dbo.NursingHome
-	add constraint FK_NursingHome_CarerId_Contact_ContactId
-	foreign key (ContactId) 
-	references dbo.Contact (ContactId);
-Go
-
-
 
 create table dbo.AppointmentSessionTemplate (
 

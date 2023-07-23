@@ -7,10 +7,10 @@ namespace nursinghomeapi.Controllers
 	public class HeartbeatController : Controller
 	{
 
-		[HttpPost(Name = "Heartbeat")]
-		public string Post()
-		{
-			return "Hello : " + DateTime.Now;
-		}
+		//[HttpPost(Name = "Heartbeat")]
+		//public string Post()
+		//{
+		//	return "Hello : " + DateTime.Now;
+		//}
 	}
 }
