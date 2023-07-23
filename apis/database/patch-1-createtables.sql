@@ -154,6 +154,8 @@ create table dbo.AppointmentSession (
 	LastUpdateDateTime datetime not null,
 	CreatedDateTime datetime not null default (getdate()),
 
+	GroupIdentifier uniqueidentifier null,
+
 	NursingHomeId int not null,
 
 	CarerId int null,

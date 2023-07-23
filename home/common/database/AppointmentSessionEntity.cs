@@ -11,6 +11,9 @@ namespace common.database
         public DateTime LastUpdateDateTime { get; set; }
         public DateTime CreatedDateTime { get; set; }
 
+		public int NursingHomeId { get; set; }
+
+		public Guid GroupIdentifier { get; set; }
 
         public string Name { get; set; } = string.Empty;
         public DateTime StartDateTime { get; set; }

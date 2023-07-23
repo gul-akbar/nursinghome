@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using common.api;
 
 namespace common.apirequests
 {
 	public class CreateSessionRequest : Request
 	{
+		public AppointmentSession Session { get; set; }
 	}
 }
