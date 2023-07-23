@@ -1,0 +1,42 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+
+    - name: npm versions
+      run: npm --version
+
+    - name: node versions
+      run: node --version
+
+    - name: Install
+      run: cd home && make clean install build
+      env:
+         CI: false
+
+    - name: list dir
+      run: ls -l
+
+    - name: list build dir
+      run: cd home && ls ./build
+
+    - name: ftp
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: 5.77.41.136
+        username: nursinghome-home
+        password: ${{ secrets.pbs_password }}
+        local-dir: ./build/
+        dangerous-clean-slate: true
