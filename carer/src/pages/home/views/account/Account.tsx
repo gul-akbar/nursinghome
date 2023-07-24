@@ -3,8 +3,8 @@ import React, { useContext, useEffect } from "react";
 import { Alert, Card } from "react-bootstrap";
 import { IMember } from "../../../../types/IMember";
 import ApplicationContext from "../../../../context/ApplicationContext";
-import { getfamilyinformation } from "../../../../services/Service";
-import { IFamilyInformation } from "../../../../types/IFamilyInformation";
+//import { getfamilyinformation } from "../../../../services/Service";
+//import { IFamilyInformation } from "../../../../types/IFamilyInformation";
 import { IFamily } from "../../../../types/IFamily";
 import loadingImage from "../../../../images/loading.gif";
 

@@ -3,10 +3,10 @@ import React, { useContext, useEffect } from "react";
 import { Alert, Card } from "react-bootstrap";
 import { IMember } from "../../../../types/IMember";
 import ApplicationContext from "../../../../context/ApplicationContext";
-import { getfamilyinformation } from "../../../../services/Service";
-import { IFamilyInformation } from "../../../../types/IFamilyInformation";
+//import { getfamilyinformation } from "../../../../services/Service";
+//import { IFamilyInformation } from "../../../../types/IFamilyInformation";
 import { IFamily } from "../../../../types/IFamily";
-import loadingImage from "../../../../images/loading.gif";
+//import loadingImage from "../../../../images/loading.gif";
 
 export const Templates: React.FC = (): JSX.Element => {
   const context = useContext(ApplicationContext);
@@ -102,11 +102,7 @@ export const Templates: React.FC = (): JSX.Element => {
   }
 
   const loadingData = (): JSX.Element => {
-    return (
-      <div className="loading-center">
-        <img src={loadingImage} alt="Loading" />
-      </div>
-    );
+    return <></>;
   };
 
   const errorView = (): JSX.Element => {

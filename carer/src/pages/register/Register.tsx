@@ -1,7 +1,7 @@
 import React from "react";
 import { IRegisterProps } from "./index";
 import { Button, Form, Modal } from "react-bootstrap";
-import { newMember } from "../../services/Service";
+//import { newMember } from "../../services/Service";
 import { IMember } from "../../types/IMember";
 
 export const Register: React.FC<IRegisterProps> = (
@@ -33,18 +33,18 @@ export const Register: React.FC<IRegisterProps> = (
       Password: password,
     };
 
-    var registered = await newMember(member);
+    // var registered = await newMember(member);
 
-    if (!registered) {
-      setErrorMsg("Cannot connect to server!");
-      setShowError(true);
-      return;
-    }
+    // if (!registered) {
+    //   setErrorMsg("Cannot connect to server!");
+    //   setShowError(true);
+    //   return;
+    // }
 
-    if (registered.success) {
-      setConfirmMessage(true);
-      return;
-    }
+    // if (registered.success) {
+    //   setConfirmMessage(true);
+    //   return;
+    // }
   }
 
   function handleRegister(e: any) {
