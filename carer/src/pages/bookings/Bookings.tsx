@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect, useState } from "react";
 import { Alert, Card } from "react-bootstrap";
-import ApplicationContext from "../../../../context/ApplicationContext";
-import loadingImage from "../../../../images/loading.gif";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { getAppointmentSessions } from "../../../../services/Service";
-import { ISessionData } from "../../../../types/ISessionData";
+import ApplicationContext from "../../context/ApplicationContext";
+import { ISessionData } from "../../types/ISessionData";
+import { getAppointmentSessions } from "../../services/Service";
+import loadingImage from "../../images/loading.gif";
 
 export const Bookings: React.FC = (): JSX.Element => {
   const context = useContext(ApplicationContext);

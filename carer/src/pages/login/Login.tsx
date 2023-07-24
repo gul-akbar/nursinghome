@@ -68,7 +68,7 @@ export const Login: React.FC<IProps> = (props: IProps): JSX.Element => {
         <div className="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
           <div className="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
             <div className="signin-logo tx-center tx-28 tx-bold tx-inverse">
-              Nursing Home
+              Carers
             </div>
             <div className="tx-center mg-b-60">Portal Login</div>
             <div className="form-group">

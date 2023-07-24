@@ -1,4 +1,4 @@
-export interface IMember {
+export interface ICarer {
   Name: string;
   HouseNumber: string;
   AddressLine: string;

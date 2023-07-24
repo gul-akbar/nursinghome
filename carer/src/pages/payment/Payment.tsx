@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Form, Modal, Row } from "react-bootstrap";
-import ApplicationContext from "../../../../context/ApplicationContext";
-import paymentType from "../../../../images/typeOfPayment.png";
 
 export const Payment: React.FC = (): JSX.Element => {
-  const context = useContext(ApplicationContext);
   const [refNumber, setRefNumber] = useState("");
   const [amountDue, setAmountDue] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -14,45 +11,10 @@ export const Payment: React.FC = (): JSX.Element => {
     setShowModal(true);
   }
 
-  function viewUpdate() {
-    const d1 = context.FamilyData;
-
-    if (d1 === undefined) {
-      return;
-    }
-
-    const d2 = context.FamilyData.getFamily();
-
-    if (d2 === undefined) {
-      return;
-    }
-
-    const d3 = context.FamilyData.getFamily().familyComplete;
-
-    if (d3 === undefined) {
-      return;
-    }
-
-    const d4 = context.FamilyData.getFamily().familyComplete.family;
-
-    if (d4 === undefined) {
-      return;
-    }
-
-    const data = context.FamilyData.getFamily().familyComplete.family.reference;
-
-    if (data === undefined) {
-      return;
-    }
-
-    const due = context.FamilyData.getFamily().familyComplete.totalAmountDue;
-
-    setAmountDue(due);
-    setRefNumber(data);
-  }
+  function viewUpdate() {}
   useEffect(() => {
     viewUpdate();
-  }, [context.FamilyData]);
+  }, []);
 
   function handlePay() {}
 
@@ -71,12 +33,7 @@ export const Payment: React.FC = (): JSX.Element => {
           </Modal.Header>
           <Modal.Body>
             <div className="loading-center">
-              <img
-                src={paymentType}
-                width={200}
-                height={50}
-                alt="payment type"
-              />
+              <img width={200} height={50} alt="payment type" />
             </div>
             <form
               style={{
@@ -227,22 +184,7 @@ export const Payment: React.FC = (): JSX.Element => {
                     <th scope="col">Date</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {context.FamilyData.getFamily() === undefined ? (
-                    <></>
-                  ) : (
-                    context.FamilyData.getFamily().familyComplete.payments.map(
-                      (m, i) => {
-                        return createPayment(
-                          m.year,
-                          m.amountPaid,
-                          m.paymentStatus,
-                          new Date(m.datePayment)
-                        );
-                      }
-                    )
-                  )}
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
             <div className="col-md-4 mb-5">{referenceNumber()}</div>

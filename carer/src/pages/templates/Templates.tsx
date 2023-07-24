@@ -1,34 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect } from "react";
-import { Alert, Card } from "react-bootstrap";
-import { IMember } from "../../../../types/IMember";
-import ApplicationContext from "../../../../context/ApplicationContext";
-//import { getfamilyinformation } from "../../../../services/Service";
-//import { IFamilyInformation } from "../../../../types/IFamilyInformation";
-import { IFamily } from "../../../../types/IFamily";
-import loadingImage from "../../../../images/loading.gif";
+import { Alert } from "react-bootstrap";
+import ApplicationContext from "../../context/ApplicationContext";
 
-export const Dashboard: React.FC = (): JSX.Element => {
+export const Templates: React.FC = (): JSX.Element => {
   const context = useContext(ApplicationContext);
 
-  const defaultFamily: IFamily = {
-    familyId: 0,
-    guid: "",
-    lastUpdateDateTime: new Date(),
-    systemOrganisationId: 0,
-    name: "",
-    houseNumber: "",
-    addressLine: "",
-    postcode: "",
-    mobile: "",
-    emailAddress: "",
-    username: "",
-    reference: "",
-    approved: false,
-    ignore: false,
-  };
-
-  const [family, setFamily] = React.useState(defaultFamily);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
 
@@ -51,33 +28,7 @@ export const Dashboard: React.FC = (): JSX.Element => {
     setLoading(false);
   }
 
-  function viewUpdate() {
-    const d1 = context.FamilyData;
-
-    if (d1 === undefined) {
-      return;
-    }
-
-    const d2 = context.FamilyData.getFamily();
-
-    if (d2 === undefined) {
-      return;
-    }
-
-    const d3 = context.FamilyData.getFamily().familyComplete;
-
-    if (d3 === undefined) {
-      return;
-    }
-
-    const data = context.FamilyData.getFamily().familyComplete.family;
-
-    if (data === undefined) {
-      return;
-    }
-
-    setFamily(data);
-  }
+  function viewUpdate() {}
   useEffect(() => {
     viewUpdate();
   }, [loading]);
@@ -102,11 +53,7 @@ export const Dashboard: React.FC = (): JSX.Element => {
   }
 
   const loadingData = (): JSX.Element => {
-    return (
-      <div className="loading-center">
-        <img src={loadingImage} alt="Loading" />
-      </div>
-    );
+    return <></>;
   };
 
   const errorView = (): JSX.Element => {
@@ -117,19 +64,16 @@ export const Dashboard: React.FC = (): JSX.Element => {
     );
   };
 
-  function registeredAccount() {
+  function templates() {
     return (
-      <>I am dashboard welcome!</>
+      <>Welcome to session and templates</>
       // <Card>
       //   <Card.Header>
       //     Date: 22.07.2023 <br /> Time: 9.00 - 12.00{" "}
       //   </Card.Header>
       //   <Card.Body>
       //     <Card.Title>{family.name}</Card.Title>
-      //     <Card.Text>
-      //       This account has been approved. Communication will be sent to this
-      //       number in the future
-      //     </Card.Text>
+      //     <Card.Text>Booking Views</Card.Text>
       //     <div className="form-group row">
       //       <label className="col-sm-2 col-form-label">Name</label>
       //       <div className="col-sm-10 col-form-label">
@@ -175,16 +119,16 @@ export const Dashboard: React.FC = (): JSX.Element => {
     return (
       <div className="row">
         <div className="col-md-8 mb-5">
-          <h2>Dashboard</h2>
+          <h2>Templates</h2>
           <hr />
           <div>
-            <div>{registeredAccount()}</div>
+            <div>{templates()}</div>
           </div>
         </div>
         <div className="col-md-4 mb-5">
-          <h2>Events </h2>
+          <h2>Recently edited</h2>
           <hr />
-          Booking Akbar at 9.00 to 12.00 - approved on 22/21/2222
+          weekly template
         </div>
       </div>
     );

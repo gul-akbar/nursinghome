@@ -1,37 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect } from "react";
 import { Alert, Button, Card, Dropdown, Form, Modal } from "react-bootstrap";
-import { IMember } from "../../../../types/IMember";
-import ApplicationContext from "../../../../context/ApplicationContext";
-//import { getfamilyinformation } from "../../../../services/Service";
-//import { IFamilyInformation } from "../../../../types/IFamilyInformation";
-import { IFamily } from "../../../../types/IFamily";
-import loadingImage from "../../../../images/loading.gif";
-import { IRecurrence } from "../../../../types/IRecurrence";
-import { ISession } from "../../../../types/ISession";
-import { newSession } from "../../../../services/Service";
+import loadingImage from "../../images/loading.gif";
+import { IRecurrence } from "../../types/IRecurrence";
+import { ISession } from "../../types/ISession";
+import { newSession } from "../../services/Service";
+import ApplicationContext from "../../context/ApplicationContext";
 
 export const Sessions: React.FC = (): JSX.Element => {
   const context = useContext(ApplicationContext);
 
-  const defaultFamily: IFamily = {
-    familyId: 0,
-    guid: "",
-    lastUpdateDateTime: new Date(),
-    systemOrganisationId: 0,
-    name: "",
-    houseNumber: "",
-    addressLine: "",
-    postcode: "",
-    mobile: "",
-    emailAddress: "",
-    username: "",
-    reference: "",
-    approved: false,
-    ignore: false,
-  };
-
-  const [family, setFamily] = React.useState(defaultFamily);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [showModalNewSession, setShowModalNewSession] = React.useState(false);

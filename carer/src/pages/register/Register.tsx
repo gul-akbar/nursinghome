@@ -1,8 +1,9 @@
 import React from "react";
 import { IRegisterProps } from "./index";
 import { Button, Form, Modal } from "react-bootstrap";
-//import { newMember } from "../../services/Service";
-import { IMember } from "../../types/IMember";
+
+import { ICarer } from "../../types/ICarer";
+import { newCarer } from "../../services/Service";
 
 export const Register: React.FC<IRegisterProps> = (
   props: IRegisterProps
@@ -23,7 +24,7 @@ export const Register: React.FC<IRegisterProps> = (
   const [errorMsg, setErrorMsg] = React.useState("Register failed");
 
   async function registerMember() {
-    const member: IMember = {
+    const member: ICarer = {
       Name: firstName + " " + lastName,
       HouseNumber: houseNumber,
       AddressLine: address,
@@ -33,18 +34,18 @@ export const Register: React.FC<IRegisterProps> = (
       Password: password,
     };
 
-    // var registered = await newMember(member);
+    var registered = await newCarer(member);
 
-    // if (!registered) {
-    //   setErrorMsg("Cannot connect to server!");
-    //   setShowError(true);
-    //   return;
-    // }
+    if (!registered) {
+      setErrorMsg("Cannot connect to server!");
+      setShowError(true);
+      return;
+    }
 
-    // if (registered.success) {
-    //   setConfirmMessage(true);
-    //   return;
-    // }
+    if (registered.success) {
+      setConfirmMessage(true);
+      return;
+    }
   }
 
   function handleRegister(e: any) {
@@ -91,9 +92,9 @@ export const Register: React.FC<IRegisterProps> = (
         <div className="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
           <div className="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
             <div className="signin-logo tx-center tx-28 tx-bold tx-inverse">
-              PBS
+              Carer
             </div>
-            <div className="tx-center mg-b-60">Create account</div>
+            <div className="tx-center mg-b-60">Register</div>
             <div className="form-group">
               {showError ? (
                 <div className="alert alert-danger" role="alert">
@@ -106,9 +107,8 @@ export const Register: React.FC<IRegisterProps> = (
             <div className="form-group">
               <input
                 className="form-control"
-                id="inputNumber"
                 type="text"
-                placeholder="Mobile number"
+                placeholder="Email"
                 onChange={(e) => setMobileNumber(e.target.value)}
               />
             </div>
@@ -174,7 +174,7 @@ export const Register: React.FC<IRegisterProps> = (
                 className="form-control"
                 id="inputEmail"
                 type="text"
-                placeholder="Email"
+                placeholder="Mobile Number"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
