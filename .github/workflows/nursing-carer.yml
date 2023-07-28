@@ -1,4 +1,4 @@
-name: nursing home
+name: nursing carer
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       run: node --version
 
     - name: Install
-      run: cd home && make clean install build
+      run: cd carer && make clean install build
       env:
          CI: false
 
@@ -30,7 +30,7 @@ jobs:
       run: ls -l
 
     - name: list build dir
-      run: cd home && ls ./build
+      run: cd carer && ls ./build
 
     - name: ftp
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -38,5 +38,5 @@ jobs:
         server: 5.77.41.136
         username: nursinghome-home
         password: ${{ secrets.nursing_password }}
-        local-dir: ./homes/build/
+        local-dir:  ./carer/build/
         dangerous-clean-slate: true

@@ -70,7 +70,20 @@ export const Dashboard: React.FC = (): JSX.Element => {
 
   function registeredAccount() {
     return (
-      <>I am dashboard welcome!</>
+      <>
+        <div>
+          <Alert key="warning" variant="warning">
+            Registration - Awaiting approval{" "}
+            <Alert.Link href="#">(approval process)</Alert.Link>
+          </Alert>
+        </div>
+        <div>
+          <Alert key="warning" variant="warning">
+            DBS - Confirmation required{" "}
+            <Alert.Link href="#">(apply now)</Alert.Link>
+          </Alert>
+        </div>
+      </>
       // <Card>
       //   <Card.Header>
       //     Date: 22.07.2023 <br /> Time: 9.00 - 12.00{" "}
@@ -135,7 +148,7 @@ export const Dashboard: React.FC = (): JSX.Element => {
         <div className="col-md-4 mb-5">
           <h2>Events </h2>
           <hr />
-          Booking Akbar at 9.00 to 12.00 - approved on 22/21/2222
+          New registration requested: 01/08/2023
         </div>
       </div>
     );
