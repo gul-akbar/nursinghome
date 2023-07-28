@@ -10,9 +10,7 @@ import {
   Dropdown,
   DropdownButton,
   Form,
-  Row,
 } from "react-bootstrap";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import ApplicationContext from "../../context/ApplicationContext";
 import { ISessionData } from "../../types/ISessionData";
@@ -22,9 +20,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Shifts: React.FC = (): JSX.Element => {
   const context = useContext(ApplicationContext);
-
-  type ValuePiece = Date | null;
-  type Value = ValuePiece | [ValuePiece, ValuePiece];
 
   const defaultSessions: ISessionData[] = [];
 
@@ -126,9 +121,13 @@ export const Shifts: React.FC = (): JSX.Element => {
               </table>
             </Card.Header>
             <Card.Body>
-              <Card.Title></Card.Title>
-              <Card.Text></Card.Text>
               <table style={{ width: "100%" }}>
+                <tr>
+                  <td style={{ minWidth: "70px" }}>Date</td>
+                  <td style={{ width: "100%" }}>
+                    {session.startDateTime.toString()}
+                  </td>
+                </tr>
                 <tr>
                   <td style={{ minWidth: "70px" }}>Start</td>
                   <td style={{ width: "100%" }}>
@@ -146,31 +145,6 @@ export const Shifts: React.FC = (): JSX.Element => {
                   <td style={{ width: "100%" }}>£{session.rate}</td>
                 </tr>
               </table>
-
-              {/* <div className="row justify-content-md-center">
-                <div className="col col-sm-1">Start</div>
-                <div className="col-md-auto">09:00</div>
-              </div>
-
-              <div className="row">
-                <div className="col">Start</div>
-                <div className="col">"session.start"</div>
-              </div>
-
-              <div className="row">
-                <div className="col">End</div>
-                <div className="col">{"session.endDateTime.getDate()"}</div>
-              </div>
-
-              <div className="row">
-                <div className="col">Location</div>
-                <div className="col">{session.name}</div>
-              </div>
-              <div className="row">
-                <div className="col">Rate</div>
-                <div className="col">{session.rate}</div>
-              </div> */}
-
               <hr />
               <div className="row">
                 <div className="col">
@@ -191,35 +165,127 @@ export const Shifts: React.FC = (): JSX.Element => {
     return (
       <>
         <br />
-
         <>
           <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Filters</Accordion.Header>
               <Accordion.Body>
                 <>
-                  {[
-                    "Primary",
-                    "Secondary",
-                    "Success",
-                    "Info",
-                    "Warning",
-                    "Danger",
-                  ].map((variant) => (
-                    <DropdownButton
-                      id={`dropdown-variants-${variant}`}
-                      variant={variant.toLowerCase()}
-                      title={variant}
-                    >
-                      <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                      <Dropdown.Item eventKey="3" active>
-                        Active Item
-                      </Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                    </DropdownButton>
-                  ))}
+                  <table style={{ width: "100%" }}>
+                    <tr>
+                      <td>
+                        <DropdownButton
+                          className={"d-grid"}
+                          style={{}}
+                          title="July 2023"
+                        >
+                          <Dropdown.Item href="#/action-1">
+                            Change title
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-2">
+                            Change background colour
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-3">
+                            Change text colour
+                          </Dropdown.Item>{" "}
+                        </DropdownButton>
+                      </td>
+                      <td>
+                        <DropdownButton
+                          className={"d-grid"}
+                          style={{}}
+                          title="All Distance"
+                        >
+                          <Dropdown.Item href="#/action-1">
+                            Change title
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-2">
+                            Change background colour
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-3">
+                            Change text colour
+                          </Dropdown.Item>{" "}
+                        </DropdownButton>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        {" "}
+                        <DropdownButton
+                          className={"d-grid"}
+                          style={{}}
+                          title="Company"
+                        >
+                          <Dropdown.Item href="#/action-1">
+                            Company
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-2">
+                            Change background colour
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-3">
+                            Change text colour
+                          </Dropdown.Item>{" "}
+                        </DropdownButton>
+                      </td>
+                      <td>
+                        <DropdownButton
+                          className={"d-grid"}
+                          style={{}}
+                          title="All branches"
+                        >
+                          <Dropdown.Item href="#/action-1">
+                            All branches
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-2">
+                            Change background colour
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-3">
+                            Change text colour
+                          </Dropdown.Item>{" "}
+                        </DropdownButton>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <DropdownButton
+                          className={"d-grid"}
+                          style={{}}
+                          title="All shifts"
+                        >
+                          <Dropdown.Item href="#/action-1">
+                            All shifts
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-2">
+                            Change background colour
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-3">
+                            Change text colour
+                          </Dropdown.Item>{" "}
+                        </DropdownButton>
+                      </td>
+                      <td>
+                        <DropdownButton
+                          className={"d-grid"}
+                          style={{}}
+                          title="By Location"
+                        >
+                          <Dropdown.Item href="#/action-1">
+                            By Location
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-2">
+                            Change background colour
+                          </Dropdown.Item>{" "}
+                          <Dropdown.Item href="#/action-3">
+                            Change text colour
+                          </Dropdown.Item>{" "}
+                        </DropdownButton>
+                      </td>
+                    </tr>
+                  </table>
+                  <br />
+                  <div>
+                    <Button variant="success">Apply</Button>{" "}
+                  </div>
                 </>
               </Accordion.Body>
             </Accordion.Item>
@@ -279,35 +345,14 @@ export const Shifts: React.FC = (): JSX.Element => {
   const shifts = (): JSX.Element => {
     return (
       <>
-        <h2>Bookings</h2>
+        <h2>Available Shifts</h2>
         <hr />
         <div>
-          <div>
-            <h5>Today</h5>
-          </div>
           <div>{bookings()}</div>
         </div>
         <br />
         <br />
       </>
-      // <div className="row">
-      //   <div className="col-md-8 mb-5">
-      //     <h2>Bookings</h2>
-      //     <hr />
-      //     <div>
-      //       <div>
-      //         <h5>Today</h5>
-      //       </div>
-      //       <div>{bookings()}</div>
-      //     </div>
-      //   </div>
-      //   <div className="col-md-4 mb-5">
-      //     <Calendar
-      //       onChange={(e) => onSelectedDateChanged(e as Date)}
-      //       value={selectedDate}
-      //     />
-      //   </div>
-      // </div>
     );
   };
 
