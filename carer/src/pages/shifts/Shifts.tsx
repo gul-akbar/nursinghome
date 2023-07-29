@@ -10,6 +10,8 @@ import {
   Dropdown,
   DropdownButton,
   Form,
+  Modal,
+  Navbar,
 } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import ApplicationContext from "../../context/ApplicationContext";
@@ -17,17 +19,25 @@ import { ISessionData } from "../../types/ISessionData";
 import { getAppointmentSessions } from "../../services/Service";
 import loadingImage from "../../images/loading.gif";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { MobileView } from "react-device-detect";
 
 export const Shifts: React.FC = (): JSX.Element => {
   const context = useContext(ApplicationContext);
 
   const defaultSessions: ISessionData[] = [];
+  const defaultSlotId: number[] = [];
 
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
 
+  const [showInfo, setShowInfo] = React.useState(false);
+  const [infoId, setInfoId] = React.useState(0);
+
   const [data, setData] = React.useState(defaultSessions);
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const [showBookModal, setShowBookModal] = React.useState(false);
+  const [slotIds, setSlotIds] = React.useState(defaultSlotId);
 
   async function LoadData(date: Date) {
     setLoading(true);
@@ -68,6 +78,21 @@ export const Shifts: React.FC = (): JSX.Element => {
     return value;
   }
 
+  function hideInfoModal() {
+    setShowInfo(false);
+  }
+  function setShowInfoDialog(id: number) {
+    setInfoId(id);
+    setShowInfo(true);
+  }
+
+  function showShiftModal(id: number) {
+    setShowBookModal(true);
+  }
+  function hideShiftModal() {
+    setShowBookModal(false);
+  }
+
   function awaitingApproval() {
     return (
       <Alert variant="danger">
@@ -98,6 +123,26 @@ export const Shifts: React.FC = (): JSX.Element => {
     );
   };
 
+  function addSlotForBooking(id: number) {
+    let idx = -1;
+
+    for (var i = slotIds.length - 1; i >= 0; i--) {
+      if (slotIds[i] === id) {
+        idx = i;
+      }
+    }
+
+    let ids = slotIds;
+
+    if (idx > -1) {
+      ids.splice(idx, 1);
+    } else {
+      ids.push(id);
+    }
+
+    setSlotIds(ids);
+  }
+
   const slot = (session: ISessionData): JSX.Element => {
     return (
       <>
@@ -106,7 +151,10 @@ export const Shifts: React.FC = (): JSX.Element => {
             <Card.Header>
               <table style={{ width: "100%" }}>
                 <tr>
-                  <td style={{ width: "100%" }}>{session.name}</td>
+                  <td style={{ width: "100%" }}>
+                    Killinghall : nursing home id {session.nursingHomeId} :{" "}
+                    {session.name}
+                  </td>
                   <td>
                     <Form.Check
                       style={{
@@ -115,6 +163,12 @@ export const Shifts: React.FC = (): JSX.Element => {
                         paddingLeft: "10px",
                       }}
                       type="checkbox"
+                      defaultChecked={slotIds.includes(
+                        session.appointmentSessionId
+                      )}
+                      onClick={() =>
+                        addSlotForBooking(session.appointmentSessionId)
+                      }
                     />
                   </td>
                 </tr>
@@ -125,33 +179,45 @@ export const Shifts: React.FC = (): JSX.Element => {
                 <tr>
                   <td style={{ minWidth: "70px" }}>Date</td>
                   <td style={{ width: "100%" }}>
-                    {session.startDateTime.toString()}
+                    {context.Formatter.formatDate(session.startDateTime)}
                   </td>
                 </tr>
                 <tr>
                   <td style={{ minWidth: "70px" }}>Start</td>
                   <td style={{ width: "100%" }}>
-                    {session.startDateTime.toString()}
+                    {context.Formatter.formatTime(session.startDateTime)}
                   </td>
                 </tr>
                 <tr>
                   <td style={{ minWidth: "50px" }}>End</td>
                   <td style={{ width: "100%" }}>
-                    {session.endDateTime.toString()}
+                    {context.Formatter.formatTime(session.endDateTime)}
                   </td>
                 </tr>
                 <tr>
                   <td style={{ minWidth: "50px" }}>Rate</td>
-                  <td style={{ width: "100%" }}>£{session.rate}</td>
+                  <td style={{ width: "100%" }}> £{session.rate}</td>
                 </tr>
               </table>
               <hr />
               <div className="row">
                 <div className="col">
-                  <Button variant="info">Info</Button>
+                  <Button
+                    variant="info"
+                    onClick={() =>
+                      setShowInfoDialog(session.appointmentSessionId)
+                    }
+                  >
+                    Info
+                  </Button>
                 </div>
                 <div className="col" style={{ textAlign: "right" }}>
-                  <Button variant="primary">Book</Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => showShiftModal(session.appointmentSessionId)}
+                  >
+                    Book
+                  </Button>
                 </div>
               </div>
             </Card.Body>
@@ -177,7 +243,9 @@ export const Shifts: React.FC = (): JSX.Element => {
                         <DropdownButton
                           className={"d-grid"}
                           style={{}}
-                          title="July 2023"
+                          title={context.Formatter.formatMonthAndYear(
+                            new Date()
+                          )}
                         >
                           <Dropdown.Item href="#/action-1">
                             Change title
@@ -356,11 +424,106 @@ export const Shifts: React.FC = (): JSX.Element => {
     );
   };
 
+  function bookSelectedSessions() {
+    return (
+      <>
+        <MobileView>
+          <Navbar className="bg-body-tertiary" fixed="bottom">
+            <Container>
+              <Button variant="primary">Book all selected</Button>
+            </Container>
+          </Navbar>
+        </MobileView>
+      </>
+    );
+  }
+
+  const showInfoModal = (): JSX.Element => {
+    return (
+      <>
+        <Modal show={showInfo} onHide={hideInfoModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>selected booking id : {infoId}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>body and infor</Modal.Body>
+          <Modal.Footer className="modal-footer justify-content-between">
+            <div className="mr-auto">
+              {/* <Button
+              variant="danger"
+              onClick={(e) => removeItem(selectedItemId)}
+            >
+              Remove
+            </Button> */}
+            </div>
+            <div>
+              {/* <Button variant="secondary">Cancel</Button> */}
+              <> </>
+              <Button
+                variant="success"
+                className="modal-padding"
+                onClick={hideInfoModal}
+              >
+                Close
+              </Button>
+            </div>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  };
+
+  const showBookShifts = (): JSX.Element => {
+    return (
+      <>
+        <Modal show={showBookModal} onHide={hideShiftModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>selected booking id : {infoId}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {slotIds.length > 0 ? (
+              slotIds.map((d) => (
+                <>
+                  {d} <br />
+                </>
+              ))
+            ) : (
+              <></>
+            )}
+          </Modal.Body>
+          <Modal.Footer className="modal-footer justify-content-between">
+            <div className="mr-auto">
+              {/* <Button
+              variant="danger"
+              onClick={(e) => removeItem(selectedItemId)}
+            >
+              Remove
+            </Button> */}
+            </div>
+            <div>
+              {/* <Button variant="secondary">Cancel</Button> */}
+              <> </>
+              <Button
+                variant="success"
+                className="modal-padding"
+                onClick={hideShiftModal}
+              >
+                Book
+              </Button>
+            </div>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  };
+
   return (
     <div>
       <div>{!loading && !error ? shifts() : <></>}</div>
       <div>{loading ? loadingData() : <></>}</div>
       <div>{error ? errorView() : <></>}</div>
+      <div>{bookSelectedSessions()}</div>
+      <div>{showInfo ? showInfoModal() : <></>}</div>
+      <div>{showBookModal ? showBookShifts() : <></>}</div>
     </div>
   );
 };
