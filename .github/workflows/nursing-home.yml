@@ -2,7 +2,7 @@ name: nursing home
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main_rename ]
 jobs:
   build:
     runs-on: ubuntu-latest
