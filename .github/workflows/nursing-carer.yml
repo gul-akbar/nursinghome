@@ -35,8 +35,8 @@ jobs:
     - name: ftp
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: 5.77.41.136
-        username: nursinghome-home
+        server: 109.203.112.105
+        username: nursingcarer
         password: ${{ secrets.nursing_password }}
         local-dir:  ./carer/build/
         dangerous-clean-slate: true
