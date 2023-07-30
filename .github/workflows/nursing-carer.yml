@@ -37,6 +37,6 @@ jobs:
       with:
         server: 109.203.112.105
         username: nursingcarer
-        password: ${{ env.nursing_password }}
+        password: ${{secrets.nursingcarer}}
         local-dir:  ./carer/build
         dangerous-clean-slate: true
