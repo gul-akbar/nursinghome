@@ -10,7 +10,24 @@ export class Formatters implements IFormatters {
     return p.toString();
   }
   formatMonthAndYear(d: Date): string {
-    return d.toString();
+    const dt = new Date(d);
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const value = monthNames[d.getMonth()] + " " + dt.getFullYear();
+    return value;
   }
   formatDate(d: Date): string {
     const dt = new Date(d);
