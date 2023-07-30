@@ -38,5 +38,5 @@ jobs:
         server: 109.203.112.105
         username: nursingcarer
         password: ${{secrets.nursing_password}}
-        local-dir:  ./
+        local-dir:  ./carer/build/
         dangerous-clean-slate: true
