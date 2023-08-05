@@ -9,15 +9,17 @@ namespace nursinghomeapi.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
-	public class RegisterNursingHomeController : Controller
+	public class RegisterNursingHomeController : BaseController
 	{
-
 		[HttpPost(Name = "RegisterNursingHome")]
 		public ApplicationResponse Post(RegisterNursingHomeRequest request)
 		{
 			ApplicationResponse response = new ApplicationResponse();
 
-			// do some authentication checks
+			if (!Authenticated(request.SessionGuid))
+			{
+				return response;
+			}
 
 			try
 			{

@@ -19,7 +19,8 @@ insert into [dbo].[NursingHome]
     ,[Username]
     ,[Password]
     ,[Approved]
-    ,[Ignore])
+    ,[Ignore]
+	,[DisplayName])
 values
     (
 	newid(),
@@ -39,8 +40,8 @@ values
 	'username',
 	'password',
 	1, 
-	0
-	)
+	0,
+	'Barkerend Nursing Home')
 
 
 

@@ -17,12 +17,17 @@ namespace nursinghomeapi.Controllers
 		[HttpPost(Name = "AppointmentSessionCreation")]
 		public Response Create(CreateSessionRequest request)
 		{
+			LogRequestInformation(request);
+
 			Response response= new Response();
+
+			if (!Authenticated(request.SessionGuid))
+			{
+				return response;
+			}
 
 			try
 			{
-				LogRequestInformation(request);
-
 				List<AppointmentSessionEntity> sesionsToCreate = GetSessionsToCreate(request);
 
 				using (SqlConnection connection = new SqlConnection(Constants.DatabaseConnectionString))

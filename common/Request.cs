@@ -2,6 +2,6 @@
 {
 	public class Request
 	{
-		public Guid NursingHomeGuid { get; set; }
+		public Guid SessionGuid { get; set; }
 	}
 }

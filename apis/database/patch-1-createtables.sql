@@ -25,10 +25,9 @@ Go
 create table dbo.[Session] (
 
 	SessionId bigint IDENTITY(1,1) not null,
-	SessionToken uniqueidentifier not null,
+	SessionGuid uniqueidentifier not null,
 	CreatedDateTime datetime not null default (getdate()),
 	ExpiryDateTime datetime not null,
-	SystemOrganisationId int NULL,
 
 	primary key clustered 
 	(
@@ -73,6 +72,7 @@ create table dbo.NursingHome (
 	LastUpdateDateTime datetime not null,
 	CreatedDateTime datetime not null default (getdate()),
 
+	DisplayName varchar(200) not null,
 	ContactName varchar(100) not null,
 	HouseNumber varchar(10) not null,
 	AddressLine1 varchar(100) not null,

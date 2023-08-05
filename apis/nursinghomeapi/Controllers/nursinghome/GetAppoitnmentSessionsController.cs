@@ -17,8 +17,15 @@ namespace nursinghomeapi.Controllers
 		[HttpPost(Name = "GetAppointmentSessions")]
 		public Response Create(GetAppointmentsForDate request)
 		{
+			LogRequestInformation(request);
+			
 			GetAppointmentSessionResponse response = new GetAppointmentSessionResponse();
 
+			if (!Authenticated(request.SessionGuid))
+			{
+				return response;
+			}
+			
 			try
 			{
 				LogRequestInformation(request);
