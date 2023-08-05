@@ -1,4 +1,4 @@
-export interface IMemberResponse {
+export interface ICarerResponse {
   success: boolean;
   message: string;
 }

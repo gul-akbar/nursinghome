@@ -1,0 +1,42 @@
+name: nursing carer
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+
+    - name: npm versions
+      run: npm --version
+
+    - name: node versions
+      run: node --version
+
+    - name: Install
+      run: cd carer && make clean install build
+      env:
+         CI: false
+
+    - name: list dir
+      run: ls -l
+
+    - name: list build dir
+      run: cd carer && ls ./build
+
+    - name: ftp
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: 109.203.112.105
+        username: nursingcarer
+        password: ${{secrets.nursing_password}}
+        local-dir:  ./carer/build/
+        dangerous-clean-slate: true

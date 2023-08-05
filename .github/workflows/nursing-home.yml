@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: nursing home
 
 on:
   push:
@@ -35,8 +35,8 @@ jobs:
     - name: ftp
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: 5.77.41.136
-        username: nursinghome-home
-        password: ${{ secrets.pbs_password }}
-        local-dir: ./build/
+        server: 109.203.112.105
+        username: nursinghomes
+        password: ${{secrets.nursing_password}}
+        local-dir:  ./home/build/
         dangerous-clean-slate: true
